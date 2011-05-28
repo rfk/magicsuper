@@ -9,7 +9,7 @@ import unittest
 
 import magicsuper
 
-class TestAutoSuperDocs(unittest.TestCase):
+class TestMagicSuperDocs(unittest.TestCase):
 
     def test_readme_matches_docstring(self):
         """Ensure that the README is in sync with the docstring.
@@ -32,7 +32,7 @@ class TestAutoSuperDocs(unittest.TestCase):
                 f.close()
 
 
-class TestAutoSuper(unittest.TestCase):
+class TestMagicSuper(unittest.TestCase):
 
     def test_basic_diamond(self):
         class Base(object):
