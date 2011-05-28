@@ -4,16 +4,16 @@ setup_kwds = {}
 
 from distutils.core import setup
 
-import autosuper
+import magicsuper
 
-NAME = "autosuper"
-PACKAGES = ["autosuper"]
-VERSION = autosuper.__version__
+NAME = "magicsuper"
+PACKAGES = ["magicsuper"]
+VERSION = magicsuper.__version__
 DESCRIPTION = "backport the magical zero-argument super() to python2"
-LONG_DESC = autosuper.__doc__
+LONG_DESC = magicsuper.__doc__
 AUTHOR = "Ryan Kelly"
 AUTHOR_EMAIL = "ryan@rfk.id.au"
-URL="http://github.com/rfk/autosuper"
+URL="http://github.com/rfk/magicsuper"
 LICENSE = "MIT"
 KEYWORDS = "super mro"
 CLASSIFIERS = [

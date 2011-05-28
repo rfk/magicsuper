@@ -1,4 +1,10 @@
 
+v0.2.0:
+
+  * renamed to "magicsuper"; the "autosuper" name is already used by e.g.
+    http://code.activestate.com/recipes/412856-autosuper-to-the-limit/
+  * added some more tests
+
 v0.1.0:
 
   * initial release; you might say *everything* has changed.

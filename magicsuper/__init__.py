@@ -1,6 +1,6 @@
 """
 
-autosuper:  backport the magical zero-argument super() to python2
+magicsuper:  backport the magical zero-argument super() to python2
 =================================================================
 
 This is an (awful, hacky, wtf-were-you-thinking) attempt to port the magical
@@ -13,7 +13,7 @@ class and instance objects when you call super, like this:
         def hello(self):
             super(Hello,self).hello()
 
-Using autosuper, you can get the friendlier behaviour from python3 where it
+Using magicsuper, you can get the friendlier behaviour from python3 where it
 just figures out the correct call at runtime:
 
     class Hello(Base):
@@ -33,7 +33,7 @@ defined.  Yuck, but it seems to work...
 
 
 __ver_major__ = 0
-__ver_minor__ = 1
+__ver_minor__ = 2
 __ver_patch__ = 0
 __ver_sub__ = ""
 __version__ = "%d.%d.%d%s" % (__ver_major__,__ver_minor__,__ver_patch__,__ver_sub__)

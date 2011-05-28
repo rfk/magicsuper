@@ -1,13 +1,13 @@
 """
 
-  autosuper.tests:  testcases for autosuper module.
+  magicsuper.tests:  testcases for magicsuper module.
 
 """
 
 import os
 import unittest 
 
-import autosuper
+import magicsuper
 
 class TestAutoSuperDocs(unittest.TestCase):
 
@@ -15,20 +15,20 @@ class TestAutoSuperDocs(unittest.TestCase):
         """Ensure that the README is in sync with the docstring.
 
         This test should always pass; if the README is out of sync it just
-        updates it with the contents of autosuper.__doc__.
+        updates it with the contents of magicsuper.__doc__.
         """
         dirname = os.path.dirname
         readme = os.path.join(dirname(dirname(__file__)),"README.rst")
         if not os.path.isfile(readme):
             f = open(readme,"wb")
-            f.write(autosuper.__doc__.encode())
+            f.write(magicsuper.__doc__.encode())
             f.close()
         else:
             f = open(readme,"rb")
-            if f.read() != autosuper.__doc__:
+            if f.read() != magicsuper.__doc__:
                 f.close()
                 f = open(readme,"wb")
-                f.write(autosuper.__doc__.encode())
+                f.write(magicsuper.__doc__.encode())
                 f.close()
 
 
@@ -107,8 +107,8 @@ class TestAutoSuper(unittest.TestCase):
                 return 3 * super().calc(value)
         for cls in (Base,Sub1,Sub2,Diamond,):
             obj = cls()
-            self.assertSuperEquals(autosuper._builtin_super(cls),super(cls))
-            self.assertSuperEquals(autosuper._builtin_super(cls,obj),
+            self.assertSuperEquals(magicsuper._builtin_super(cls),super(cls))
+            self.assertSuperEquals(magicsuper._builtin_super(cls,obj),
                                    super(cls,obj))
         
 
