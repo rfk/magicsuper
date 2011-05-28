@@ -44,16 +44,16 @@ import __builtin__
 
 _builtin_super = __builtin__.super
 
-_sentinel = object()
+_SENTINEL = object()
 
-def _auto_super(typ=_sentinel,type_or_obj=_sentinel):
+def _auto_super(typ=_SENTINEL,type_or_obj=_SENTINEL):
     """Like buildin super(), but capable of magic.
 
     This acts just like the builtin super() function, but if you don't give
     it any arguments then it tries to infer them at runtime.
     """
     #  Infer the correct call if used without arguments.
-    if typ is _sentinel:
+    if typ is _SENTINEL:
         # We'll need to do some frame hacking.
         f = sys._getframe(1)
         # Get the first positional argument of the function.
@@ -85,7 +85,7 @@ def _auto_super(typ=_sentinel,type_or_obj=_sentinel):
         else:
             raise RuntimeError("super() called outside a method")
     #  Now just dispatch to builtin super.
-    if type_or_obj is not _sentinel:
+    if type_or_obj is not _SENTINEL:
         return _builtin_super(typ,type_or_obj)
     return _builtin_super(typ)
     
