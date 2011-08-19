@@ -46,7 +46,7 @@ _builtin_super = __builtin__.super
 
 _SENTINEL = object()
 
-def _auto_super(typ=_SENTINEL,type_or_obj=_SENTINEL):
+def super(typ=_SENTINEL,type_or_obj=_SENTINEL,framedepth=1):
     """Like buildin super(), but capable of magic.
 
     This acts just like the builtin super() function, but if you don't give
@@ -55,7 +55,7 @@ def _auto_super(typ=_SENTINEL,type_or_obj=_SENTINEL):
     #  Infer the correct call if used without arguments.
     if typ is _SENTINEL:
         # We'll need to do some frame hacking.
-        f = sys._getframe(1)
+        f = sys._getframe(framedepth)
         # Get the first positional argument of the function.
         try:
             type_or_obj = f.f_locals[f.f_code.co_varnames[0]]
@@ -72,7 +72,7 @@ def _auto_super(typ=_SENTINEL,type_or_obj=_SENTINEL):
         #  Now, find the class owning the currently-executing method.
         for typ in mro:
             for meth in typ.__dict__.itervalues():
-                if not isinstance(meth,type(_auto_super)):
+                if not isinstance(meth,type(super)):
                     continue
                 if meth.func_code is f.f_code:
                     # Aha!  Found you.
@@ -88,8 +88,14 @@ def _auto_super(typ=_SENTINEL,type_or_obj=_SENTINEL):
     if type_or_obj is not _SENTINEL:
         return _builtin_super(typ,type_or_obj)
     return _builtin_super(typ)
+
+
+def superm(*args,**kwds):
+    f = sys._getframe(1)
+    nm = f.f_code.co_name
+    return getattr(super(framedepth=2),nm)(*args,**kwds)
     
 
-__builtin__.super = _auto_super
+__builtin__.super = super
 
 

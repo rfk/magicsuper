@@ -1,4 +1,11 @@
 
+v0.3.0:
+
+  * made it so you can do "from magicsuper import super".
+  * added "superm" function, which directly calls the superclass version
+    of the "current method".
+
+
 v0.2.0:
 
   * renamed to "magicsuper"; the "autosuper" name is already used by e.g.

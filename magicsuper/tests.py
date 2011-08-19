@@ -110,6 +110,16 @@ class TestMagicSuper(unittest.TestCase):
             self.assertSuperEquals(magicsuper._builtin_super(cls),super(cls))
             self.assertSuperEquals(magicsuper._builtin_super(cls,obj),
                                    super(cls,obj))
+
+    def test_superm(self):
+        class Base(object):
+            def getit(self):
+                return 2
+        class Sub(Base):
+            def getit(self):
+                return 10 * magicsuper.superm()
+        s = Sub()
+        self.assertEquals(s.getit(),20)
         
 
 
