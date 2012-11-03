@@ -43,15 +43,14 @@ import sys
 import __builtin__
 
 _builtin_super = __builtin__.super
-
 _SENTINEL = object()
 
-def super(typ=_SENTINEL,type_or_obj=_SENTINEL,framedepth=1):
-    """Like buildin super(), but capable of magic.
+def super(typ=_SENTINEL, type_or_obj=_SENTINEL, framedepth=1):
+    '''Like builtin super(), but capable of magic.
 
-    This acts just like the builtin super() function, but if you don't give
-    it any arguments then it tries to infer them at runtime.
-    """
+    This acts just like the builtin super() function, but if called
+    without any arguments it attempts to infer them at runtime.
+    '''
     #  Infer the correct call if used without arguments.
     if typ is _SENTINEL:
         # We'll need to do some frame hacking.
