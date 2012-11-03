@@ -71,6 +71,10 @@ def super(typ=_SENTINEL, type_or_obj=_SENTINEL, framedepth=1):
             except AttributeError:
                 raise RuntimeError('super() used with a non-newstyle class')
         
+        #   A ``for...else`` block?  Yes!  It's odd, but useful.
+        #   If unfamiliar with for...else, see: 
+        #
+        #       http://psung.blogspot.com/2007/12/for-else-in-python.html
         for typ in mro:
             #  Find the class that owns the currently-executing method.
             for meth in typ.__dict__.itervalues():
