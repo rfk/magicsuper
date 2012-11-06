@@ -1,5 +1,5 @@
-"""
-
+# -*- coding: utf-8 -*-
+'''
 magicsuper:  backport the magical zero-argument super() to python2
 =================================================================
 
@@ -29,8 +29,7 @@ object being executed and the object on which it's being called, and then
 walking the object's __mro__ chain to find out where that function was
 defined.  Yuck, but it seems to work...
 
-"""
-
+'''
 
 __ver_major__ = 0
 __ver_minor__ = 2
