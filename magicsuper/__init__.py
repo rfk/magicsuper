@@ -39,6 +39,7 @@ __version__ = "%d.%d.%d%s" % (__ver_major__,__ver_minor__,__ver_patch__,__ver_su
 
 
 import sys
+from types import FunctionType
 import __builtin__
 
 _builtin_super = __builtin__.super
@@ -77,7 +78,15 @@ def super(typ=_SENTINEL, type_or_obj=_SENTINEL, framedepth=1):
         for typ in mro:
             #  Find the class that owns the currently-executing method.
             for meth in typ.__dict__.itervalues():
-                if not isinstance(meth,type(super)):
+                # Drill down through any wrappers to the underlying func.
+                # This handles e.g. classmethod() and staticmethod().
+                try:
+                    while not isinstance(meth,FunctionType):
+                        try:
+                            meth = meth.__func__
+                        except AttributeError:
+                            meth = meth.__get__(type_or_obj)
+                except (AttributeError, TypeError):
                     continue
                 if meth.func_code is f.f_code:
                     break   # Aha!  Found you.
