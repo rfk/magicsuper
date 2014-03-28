@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
 magicsuper:  backport the magical zero-argument super() to python2
-=================================================================
+==================================================================
 
 This is an (awful, hacky, wtf-were-you-thinking) attempt to port the magical
 zero-argument super() call from python3 to python2.
